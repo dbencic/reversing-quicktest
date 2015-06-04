@@ -19,9 +19,9 @@ apple 2 '''
 import argparse
 
 def count(file, out):
-    print((file, out))
-
-
+#    print((file, out))
+    words = [word.strip() for word in open(file)]
+    print(words)
 
 
 
