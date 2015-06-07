@@ -18,36 +18,33 @@ apple 2 '''
 
 import argparse
 import re
-from itertools import groupby
+from collections import Counter
 
 def transform(word):
-	#[^\w] matches all non word characters
-	return (re.sub(r'[^\w]','',word)).lower()#case is ignored
+    #[^\w] matches all non word characters
+    return (re.sub(r'[^\w]','',word)).lower()#case is ignored
 
-def count(file):
-	words = [transform(word) for word in open(file)]
-	words = sorted(words)
-	groupped = [(k, len(list(g))) for k, g in groupby(words)]
-	filtered = [group for group in groupped if group[1] > 1]
-	filtered.sort(key=lambda k: k[1], reverse=True)
-	return filtered;
+def read(file):
+    words = Counter()
+    with open(file) as f:
+        for word in f:
+            words[transform(word)] += 1;
+    filtered = [w for w in words.items() if w[1] > 1]
+    filtered.sort(key=lambda k: k[1], reverse=True)
+    return filtered
 
-def log_occurence(words, outfile):
-
-	if (outfile):
-		with open(outfile, 'w') as f:
-			f.writelines("{0} {1}\n".format(w[0], w[1]) for w in words)
-			f.close()
-			print("Output writtent to {0}".format(outfile))
-
-	else:
-		for w in words:
-			print("{0} {1}".format(w[0], w[1]))
-			
+def log(words, outfile):
+    if (outfile):
+        with open(outfile, 'w') as f:
+            f.writelines("{0} {1}\n".format(w[0], w[1]) for w in words)
+            print("Output writtent to {0}".format(outfile))
+    else:
+        for w in words:
+            print("{0} {1}".format(w[0], w[1]))
 
 def main(file, out):
-	words = count(file)
-	log_occurence(words, out)
+    words = read(file)
+    log(words, out)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
