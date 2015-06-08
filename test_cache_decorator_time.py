@@ -9,12 +9,12 @@ logging.basicConfig(level=logging.INFO)
 class TestCacheDecoratorTime(unittest.TestCase):
 
     def tearDown(self):
-        print("***********tearing down***********")
+        logging.debug("***********tearing down***********")
         current_time.clear()
 
     def test5minutesEviction(self):
         sleepTime = 301;#5 min and 1 seconds
-        logging.debug("Testing evict due to time. going to sleep for {0} seconds".format(sleepTime))
+        logging.info("Testing evict due to time. going to sleep for {0} seconds".format(sleepTime))
         initial_value = current_time()
         time.sleep(sleepTime)
         self.assertNotEqual(current_time(), initial_value)
@@ -22,7 +22,7 @@ class TestCacheDecoratorTime(unittest.TestCase):
 
     def testLessThan5minutesEviction(self):
         sleepTime = 299;#5 min minus 1 second
-        logging.debug("Testing evict due to time. going to sleep for {0} seconds".format(sleepTime))
+        logging.info("Testing evict due to time. going to sleep for {0} seconds".format(sleepTime))
         initial_value = current_time()
         time.sleep(sleepTime)
         self.assertEqual(current_time(), initial_value)
