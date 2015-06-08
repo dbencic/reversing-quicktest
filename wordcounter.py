@@ -48,7 +48,9 @@ def main(file, out):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--source', help='File containing the words.', required=True)
-    parser.add_argument('-o', '--out', help='File to write result into. If not specified, console will be used.', required=False)
+    parser.add_argument('-s', '--source', help='File containing the words.', 
+        required=True)
+    parser.add_argument('-o', '--out', help='File to write result into. \
+        If not specified, console will be used.', required=False)
     args = parser.parse_args()
     main(args.source, args.out)
