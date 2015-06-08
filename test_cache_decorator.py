@@ -9,6 +9,11 @@ class TestCacheDecorator(unittest.TestCase):
         current_time.clear()
         current_time_with_args.clear()
 
+    def tearDown(self):
+        print("**************tearing down***********")
+        current_time.clear()
+        current_time_with_args.clear()
+
     def test5times(self):#testing that value can be retreived 5 times from cache
         print_test_title("testing 5 calls, all should return cached value")
         initial_value = current_time()

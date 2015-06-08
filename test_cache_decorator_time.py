@@ -8,15 +8,19 @@ class TestCacheDecorator(unittest.TestCase):
     def setUp(self):
         current_time.clear()
 
+    def tearDown(self):
+        print("**************tearing down***********")
+        current_time.clear()
+
     def test5minutesEviction(self):
-        sleepTime = 302;#5 min and 2 seconds
+        sleepTime = 301;#5 min and 1 seconds
         print_test_title("Testing evict due to time. going to sleep for {0} seconds".format(sleepTime))
         initial_value = current_time()
         time.sleep(sleepTime)
         self.assertNotEqual(current_time(), initial_value)
 
-    def test5minutesEviction(self):
-        sleepTime = 298;#5 min minus 2 seconds
+    def testLessThan5minutesEviction(self):
+        sleepTime = 299;#5 min minus 1 second
         print_test_title("Testing evict due to time. going to sleep for {0} seconds".format(sleepTime))
         initial_value = current_time()
         time.sleep(sleepTime)

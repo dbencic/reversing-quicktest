@@ -32,7 +32,8 @@ class cached:
 
     def clear(self):
         print("Clearing cache for function {0}".format(self.__function))
-        self.__store.clear()
+        for k,v in self.__store.items():
+            v.stop()
         self.hits = 0
         self.miss = 0
 
@@ -45,14 +46,19 @@ class _CachedItem:
         self.__cache = cache
         self.__key = key
         #Evicting after 5 min. This may not be best solution for large number different of arguments
-        Timer(300, self.evict).start()
+        self.__timer = Timer(300, self.__evict);
+        self.__timer.start()
 
-    def evict(self):
+    def __evict(self):
         print("Evicting function result from cache for key {0}".format(self.__key))
         self.__cache.remove(self.__key)
+        self.__timer.cancel()
+
+    def stop(self):
+        self.__timer.cancel()
 
     def get_item(self):
         self.count = self.count + 1
         if (self.count == 5):
-            self.evict()
+            self.__evict()
         return self.__item
