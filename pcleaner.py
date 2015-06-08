@@ -16,7 +16,7 @@ def load_file(file):
 def load_url(url):
     with urllib.request.urlopen(url) as response:
         data = response.read()
-        html = data.decode('utf-8')
+        html = data.decode(response.headers.get_content_charset('utf-8'))
         return html
 
 def load(source):
