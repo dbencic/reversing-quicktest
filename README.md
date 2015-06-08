@@ -25,7 +25,7 @@ gives you stratup options. Together with <code>-s</code> parameter it is possibl
 <h3>Usage</h3>
 <p>For example, run by invoking
 	<code>python pcleaner.py -s pcleaner_test.html</code>
-where source (-s) can be file or http / https URL (url content should be unicode)</p>
+where source (-s) can be file or http / https URL (url content should be unicode).</p>
 
 <p><code>python pcleaner.py --h</code>
 gives you stratup options. Together with <code>-s</code> parameter it is possible to define <code>-o</code> parameter to specify file to which result will be written, for example <code>python pcleaner.py -s http://www.google.com -o out.html</code> . </p>
@@ -34,9 +34,9 @@ gives you stratup options. Together with <code>-s</code> parameter it is possibl
 file <code>test_pcleaner.py</code> contains some common test cases
 
 <h3>Final notes</h3>
-Handling of source(file, URL) data coding can be improved further. It can give codec errors if data coding is not specified in response header (in that case expects utf-8 content as input)
+<p>Handling of source(file, URL) data coding can be improved further. It can give codec errors if data coding is not specified in response header (if datacoding header is not specified expects utf-8 content as input).</p>
 
-<h2>3th task, caching functions return value</h2>
+<h2>3th task, caching function return value</h2>
 <em>Implementation can be found in <code>cache_decorator.py</code></em>
 <p>Cache expiry time and number of hits are hardcoded as requested by task, but decorator can be changed in order to pass those two parameters as arguments.</p>
 <p><em>Time triggered eviction</em> is done by one timer thread for every cached item, what simplifies the code, but may not be appropriate for large number of cached items. Anyway, evicting items after timer expires releases memory in case when some cached items are rarely hit. For real world scenario time based cache eviction policy can be rewritten differently.</p>
