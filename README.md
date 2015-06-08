@@ -1,5 +1,5 @@
 # reversing-quicktest
-ReversingLabs quick python test
+Quick python test
 
 Please use python 3+
 
@@ -28,9 +28,12 @@ Handling of source(file, URL) data coding can be improved further
 
 <h2>3th task, caching functions return value</h2>
 <em>Implementation can be found in <code>cache_decorator.py</code></em>
-<p>Cache expiry time and number of hits are hardcoded as requested by task, but decorator can be changed in order to pass those two parameters as arguments</p>
-<p>Time triggered eviction is done by one timer thread for every cache item, what simplifies the code, but may not be appropriate for large number of cached items. Anyway evicting items after timer expires releases some memory in case when some cached items are rarely hit. For real world scenario time based cache eviction policy can be written differently, of course</p>
+<p>Cache expiry time and number of hits are hardcoded as requested by task, but decorator can be changed in order to pass those two parameters as arguments.</p>
+<p><em>Time triggered eviction</em> is done by one timer thread for every cached item, what simplifies the code, but may not be appropriate for large number of cached items. Anyway, evicting items after timer expires releases memory in case when some cached items are rarely hit. For real world scenario time based cache eviction policy can be rewritten differently, of course</p>
 
 <h3>Invoking/Testing</h3>
 <p>for number of hits test scenarios, run test <code>test_cache_decorator.py</code></p>
-<p>for timebased eviction test scenarios, run test <code>test_cache_decorator_time.py</code> . The reason behind separating time based eviction to different test is that it takes 10 minutes to run</p>
+<p>for time based eviction test scenarios, run test <code>test_cache_decorator_time.py</code> . The reason behind separating time based eviction to different test is that it takes 10 minutes to run.</p>
+
+<h3>Final notes</h3>
+<p>If you want to see more detailed log messages, change log configuration in <code>cache_decorator.py</code> to <code>logging.basicConfig(level=logging.DEBUG)</code></p>
