@@ -25,7 +25,7 @@ gives you stratup options. Together with <code>-s</code> parameter it is possibl
 <h3>Usage</h3>
 <p>For example, run by invoking
 	<code>python pcleaner.py -s pcleaner_test.html</code>
-where source (-s) can be file or http / https URL (url content should be unicode).</p>
+where source (-s) can be file or http / https URL .</p>
 
 <p><code>python pcleaner.py --h</code>
 gives you stratup options. Together with <code>-s</code> parameter it is possible to define <code>-o</code> parameter to specify file to which result will be written, for example <code>python pcleaner.py -s http://www.google.com -o out.html</code> . </p>
